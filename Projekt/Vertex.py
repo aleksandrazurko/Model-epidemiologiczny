@@ -13,23 +13,14 @@ class Vertex():
         self.__probability = probability
         self.__available = True
         
-    def __str__(self):
-        text = 'wierzcholek: ' + str(self.__coordinate)
-        for i in range (len(self.__path)):
-            text += '\nmożliwość: ' + str(self.__path[i]) + ', prawdopodobieństwo: ' + str(self.__probability[i])
-        return(text)
-
+    #zwracanie wspolrzednych wierzchołka
     def GetVertex(self):
         return(self.__coordinate)
-    
+
+    #zwracanie dostepnych ścieżek z wierzchołka
     def GetPath(self):
         return(self.__path)
-    
+
+    #zwracanie prawdopodobieństwa wyboru danej ścieżki
     def GetProbability(self):
         return(self.__probability)
-
-    def ChangeAvailable(self, available):
-        self.__available = available
-
-    def GetAvailable(self):
-        return(self.__available)
