@@ -9,54 +9,37 @@ import pygame as pg
 class Human():
     #konstruktor
     def __init__(self,position, status, mask): 
-        self.__position = position
-        self.__status = status
-        self.__mask = mask
+        self.__position = position #pozycja człowieka
+        self.__status = status #status człowieka
+        self.__mask = mask #czy posiada maseczkę
+        self.__stop = 0
 
     #destruktor
     def __del__(self):
         return()
 
+    #zmiana statusu
     def ChangeStatus(self, new_status):
         self.__status = new_status
 
+    #zwracanie pozycji
     def GetPosition(self):
         return(self.__position)
 
+    #zwracanie statusu
     def GetStatus(self):
         return(self.__status)
 
+    #zwracanie maseczki true/false
     def GetMask(self):
         return(self.__mask)
 
-    def Show(self,screen):
-        scale = 50
-        if self.__status == 'I':
-            pg.draw.circle(screen, (255,0,0), (self.__position[0]*scale,self.__position[1]*scale), 10)
-        else:
-            pg.draw.circle(screen, (100, 240, 50), (self.__position[0]*scale,self.__position[1]*scale), 10)
-
-    def Hide(self,screen, max_humans):
-        scale = 50
-        for i in range(max_humans):
-            pg.draw.circle(screen, (0, 0, 0), (self.__position[0]*scale, self.__position[1]*scale + i*5), 5)
-
-
     #wykonanie kroku
-    def Step(self, parent1,parent2, max_humans):
-        _,paths, probability = parent1.GetBack(self.__position)
-        los = random.random()
-        suma = 0
-        ind = 0
-        for p in probability:
-            if (p/100 + suma) > los:
-                break
-            else:
-                suma += p/100
-                ind += 1
-        if parent2[paths[int(ind)][0]][paths[int(ind)][1]].GetHumans()<= max_humans:
-            parent2[self.__position[0]][self.__position[1]].AddHuman(-1)
-            self.__position = paths[ind]
-            parent2[paths[int(ind)][0]][paths[int(ind)][1]].AddHuman(1)
+    def Step(self, graph,grid, max_humans):
+        path = graph.GetPath(self.__position)
+        if grid[int(path[0])][int(path[1])].GetHumans() < max_humans:
+            grid[int(self.__position[0])][int(self.__position[1])].AddHuman(-1)
+            self.__position = path
+            grid[int(path[0])][int(path[1])].AddHuman(1)
         return(self.__position)
 
