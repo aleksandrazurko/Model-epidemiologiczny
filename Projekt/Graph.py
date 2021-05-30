@@ -21,24 +21,24 @@ class Graph():
                 temp_pr = []
                 line_temp = line.split(',')
                 try:
-                    line_temp[0] = int(line_temp[0])
-                    line_temp[1] = int(line_temp[1])
+                    line_temp[0] = float(line_temp[0])
+                    line_temp[1] = float(line_temp[1])
                 except:
                     print("Coordinates should be numeric")
-                temp_v.append(line_temp[0])
-                temp_v.append(line_temp[1])
+                temp_v.append(line_temp[0] - 0.5)
+                temp_v.append(line_temp[1] - 0.5)
             else:
                 line = line.split(' ')
                 for i in range(int((len(line)))):
                     if j%3 == 1: #pobranie współrzędnych możliwych punktów
                         line_temp = line[i].split(',')
                         try:
-                            line_temp[0] = int(line_temp[0])
-                            line_temp[1] = int(line_temp[1])
+                            line_temp[0] = float(line_temp[0])
+                            line_temp[1] = float(line_temp[1])
                         except:
                             print("Coordinates should be numeric")
-                        temp_pa.append([line_temp[0],line_temp[1]])
-                    else: #pobieranie prawdopodobieństwa
+                        temp_pa.append([line_temp[0]- 0.5,line_temp[1] - 0.5])
+                    else: #pobieranie prawdopodobień stwa
                         try:
                             line[i] = int(line[i])
                         except:
@@ -48,7 +48,6 @@ class Graph():
             if j%3 == 2: #tworzenie obiektu wierzchołek i dodanie go do listy w Graphie
                 vertex = Vertex(temp_v, temp_pa, temp_pr)
                 self.__vertices.append(vertex)
-                #print('Wczytane dane: ', vertex, '\n')
             j += 1
 
     #zwracanie współrzędnych punktu startowego          
@@ -59,13 +58,21 @@ class Graph():
     def End(self):
         return(self.__vertices[-1].GetPath()[0])
 
-    #zwracanie możliwych punktów oraz prawdopodobieństwa dla zadanego wierzchołka
-    def GetBack(self,vertex):
+    #zwracanie wylosowanej ścieżki
+    def GetPath(self,vertex):
         for i in range(len(self.__vertices)):
             if self.__vertices[i].GetVertex() == vertex:
-                return(i, self.__vertices[i].GetPath(), self.__vertices[i].GetProbability())
-
-    def Available(self, vertex,prev_vertex):
-        return True
+                break
+        los = random.random()
+        suma = 0
+        ind = 0
+        probability = self.__vertices[i].GetProbability()
+        for p in probability:
+            if (p/100 + suma) > los:
+                break
+            else:
+                suma += p/100
+                ind += 1
+        return(self.__vertices[i].GetPath()[ind])
    
         
