@@ -14,19 +14,19 @@
 ## URUCHOMIENIE
 main.py space paths steps prob_in mask max_humans status_I virus virus_death virus_trans prob_I max_prob_I factor_mask
 
-*space - plik tekstowy z wymiarami obiektu
-*paths - plik tekstowy ze ścieżkami
-*steps - int, liczba cykli symulacji
-*prob_in - float, prawdopodobieństwo w % pojawienia się nowego człowieka
-*mask - float, prawdopodobieństwo w % posiadania maseczki
-*max_humans - maksymalna liczba ludzi znajdujących się w jednostce przestrzeni
-*status_I - float, prawdopodobieństwo w %, że osoba, która wchodzi jest zarażona
-*virus - float, ilość pozostawianego wirusa przez osobę zarażoną
-*virus_death - float, jaki procent wirusa umiera w każdym kroku
-*virus_trans - float, jaki procent wirusa jest przekazywany na sąsiednie pola
-*prob_I - float, prawdopodobieńśtwo w % zarażenia przez jednostkę wirusa
-*max_prob_I - float, maksymalne prawdopodobieństwo w % zarażenia
-*factor_mask - float, ile razy zmniejsza się prawdopodobieństwo zarażenia w maseczce
+* space - plik tekstowy z wymiarami obiektu
+* paths - plik tekstowy ze ścieżkami
+* steps - int, liczba cykli symulacji
+* prob_in - float, prawdopodobieństwo w % pojawienia się nowego człowieka
+* mask - float, prawdopodobieństwo w % posiadania maseczki
+* max_humans - maksymalna liczba ludzi znajdujących się w jednostce przestrzeni
+* status_I - float, prawdopodobieństwo w %, że osoba, która wchodzi jest zarażona
+* virus - float, ilość pozostawianego wirusa przez osobę zarażoną
+* virus_death - float, jaki procent wirusa umiera w każdym kroku
+* virus_trans - float, jaki procent wirusa jest przekazywany na sąsiednie pola
+* prob_I - float, prawdopodobieńśtwo w % zarażenia przez jednostkę wirusa
+* max_prob_I - float, maksymalne prawdopodobieństwo w % zarażenia
+* factor_mask - float, ile razy zmniejsza się prawdopodobieństwo zarażenia w maseczce
 >PLIK SPACE: w osobnych liniach podaje się: nazwę identyfikacyjną, a po spacji jej współrzędne (x i y rozdzielone przecinkiem) również rozdzielone spacją,
 >możliwe nazwy do użycia to: object (współrzędne wierzchołków obiektu), door (współrzędne drzwi zewnętrzych), size (rozmiar macierzy symulacji - współrzędne object powinny mieścić się w size), 
 >active (współrzędne pola na którym może stanąć człowiek), cashdesks (współrzędne kasy w sklepie), excluded (współrzędne miejsc na któych nie może stanąć człowiek),
