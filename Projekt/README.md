@@ -13,6 +13,7 @@
 - Python
 ## URUCHOMIENIE
 main.py space paths steps prob_in mask max_humans status_I virus virus_death virus_trans prob_I max_prob_I factor_mask
+
 *space - plik tekstowy z wymiarami obiektu
 *paths - plik tekstowy ze ścieżkami
 *steps - int, liczba cykli symulacji
