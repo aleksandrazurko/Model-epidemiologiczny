@@ -30,6 +30,7 @@ main.py space paths steps prob_in mask max_humans status_I virus virus_death vir
 >możliwe nazwy do użycia to: object (współrzędne wierzchołków obiektu), door (współrzędne drzwi zewnętrzych), size (rozmiar macierzy symulacji - współrzędne object powinny mieścić się w size), 
 >active (współrzędne pola na którym może stanąć człowiek), cashdesks (współrzędne kasy w sklepie), excluded (współrzędne miejsc na któych nie może stanąć człowiek),
 >inwalls (współrzędne ścian znajdujących się w object), indoors (współrzędne drzwi znajdujących się w object)
+>
 >PLIK PATHS: każdy przejście jest zapisywane w trzech liniach: w pierwszej - współrzędne wierzchołka; w drugiej - współrzędne wierzchołków na które możemy przejść z podanego wyżej,
 >w trzeciej - prawdopodobieństwo * 100 przejścia na dany wierzchołek. Współrzędne x i y rozdzielone są przecinkiem, a reszta spacjami.
 >Przykładowe pliki: space (gym.txt, tramwaj.txt, sklep_zespolowe.txt), paths (gym_path.txt, tram_path.txt, sklep_graf.txt) znajdują się w folderze z projektem.
