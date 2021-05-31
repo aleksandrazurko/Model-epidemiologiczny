@@ -39,4 +39,4 @@ main.py gym.txt gym_path.txt 500 10 90 3 10 1 10 20 0.1 95 5
 ## STATUS
 w trakcie realizacji
 ## AUTORZY
-Stworzone przez: Aleksandra Bartnik, Aleksandra Żurko, Agnieszka Motyka, Marta Giziewska.
+Aleksandra Bartnik, Aleksandra Żurko, Agnieszka Motyka, Marta Giziewska
