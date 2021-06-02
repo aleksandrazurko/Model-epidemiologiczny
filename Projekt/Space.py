@@ -138,13 +138,12 @@ class Object():
             self.DrawPolygon(iw,4)
         return(self.__object, self.__doors, self.__excludeds, self.__cashdesks)  
 
-    #zwracanie rozmiaru pomieszczenia
     def GetSize(self):
         return self.__size
     
     #tworzenie odcieni szarości do zaznaczania stężenia   
-    def Gray(self,im):
-        im = 255 * (im/im.max())
+    def Gray(self,im,maximum):
+        im = 255 * (im/maximum)
         w,h = im.shape
         ret = np.empty((w,h,3),dtype = np.uint8)
         ret[:,:,2] = ret[:,:,1] = ret[:,:,0] = im
@@ -163,8 +162,7 @@ class Object():
             if i != 0 and i%scale == 0:
                 next_x += 1
             next_y = 0
-        matrix_color = 255 * dosc / dosc.max()
-        matrix_color = self.Gray(dosc)
+        matrix_color = self.Gray(dosc, dosc.max())
         return(matrix_color)
 
     #wizualizacja człowieka
@@ -281,12 +279,8 @@ class Object():
                     else:
                         prob = (max_prob_I/100)/factor
                     if risk <= prob:
-                        h.ChangeStatus('I')
+                        h.ChangeStatus('IS')
                         I_temp += 1
-                        if h.GetMask():
-                            self.__grid[int(temp[0]+1)][int(temp[1]+1)].AddVirus(vir/factor_mask)
-                        else:
-                            self.__grid[int(temp[0]+1)][int(temp[1]+1)].AddVirus(vir)
                 new_step.append(h.GetPosition())
                 #self.VisualHuman(scale,screen,h,new_step)
                 #pg.display.update()
@@ -309,4 +303,4 @@ class Object():
             demendedFps = 50
             clock.tick(demendedFps)
         pg.quit()
-        return(number_step,stanI)
+        return(number_step,stanI) 
