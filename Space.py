@@ -257,7 +257,7 @@ class Object():
                         mx += 1
 
     #główna funkcja, tworzenie ludzi, ruch ludzi, wywołanie ruchu wirusa, wywołanie wizualizacji          
-    def Motion(self, parent, steps, prob_in, max_humans, mask, vir,vir_d, vir_tr, stat_I, factor_mask, factor_I, max_prob_I, keep = []):
+    def Motion(self, parent, steps, prob_in, max_humans, mask, vir,vir_d, vir_tr, stat_I, factor_mask, factor_I, max_prob_I, keep = [], gym = False):
         pg.init()
         scale = 30 #powiększenie oknia wizualizacji
         screen = pg.display.set_mode((self.__size[0]*scale,self.__size[1]*scale))
@@ -295,11 +295,18 @@ class Object():
             actives_stop = 30
             #robienie kroku każdym człowiekiem, zmienianie stężenia wirusa w gridzie na podstawie statusu człowieka
             for index, h in enumerate(self.__humans):
+                
                 self.VisualHuman(scale,screen,h,new_step)
                 if len(self.__humans) != len(self.__stepstostay):
                     self.__stepstostay.append([])
                 if len(self.__humans) != len(self.__activekeep):
                     self.__activekeep.append([])
+                    
+                if h.GetPosition()[0] in self.__cashdesksinfY:
+                   for i in range(len(self.__cashdesksinfY)):
+                       if h.GetPosition()[0] == self.__cashdesksinfY[i] and h.GetPosition()[1] in np.range(self.__cashdesksinfX[i][0],self.__cashdesksinfX[i][1]+1):# and bool(self.__stepstostay[index]) != True:
+                            temp = h.Step(parent,self.__grid, max_queue)
+                 
                 if h.GetPosition() in self.__relevantplaces:
                     if self.__stepstostay[index] == []:
                         self.__stepstostay[index].append(self.__relevantsteps[self.__relevantplaces.index(h.GetPosition())])
@@ -312,29 +319,50 @@ class Object():
                             self.__stepstostay[index][0] -= 1
                             temp = h.GetPosition()
                 
-                else: temp = h.Step(parent,self.__grid, max_humans)
+                # else: temp = h.Step(parent,self.__grid, max_humans)
+                elif gym and h.GetPosition()[0] in np.arange(14,17.5,0.5) and h.GetPosition()[1] in np.arange(9,17.5,0.5):
+                    if self.__grid[int(h.GetPosition()[0]+2)][int(h.GetPosition()[1])].GetType() == 6:
+                        print(self.__activekeep[index])
+                        if self.__activekeep[index] == []:
+                            self.__activekeep[index].append(actives_stop)
+                            temp = h.GetPosition()
+                            print(temp)
+                        else:
+                            if self.__activekeep[index][0] == 0:
+                                self.__activekeep[index] = []
+                                temp = h.Step(parent,self.__grid, max_humans)
+                                print(temp)
+                            else:
+                                self.__activekeep[index][0] -= 1
+                                temp = h.GetPosition()
+                                print(temp)
+                    else: temp = h.Step(parent,self.__grid, max_humans)
                 
-                # elif self.__actives:
-                #     for i in range(len(self.__activesinfY)):
-                #         if h.GetPosition()[0] in range(self.__activesinfY[i][0],self.__activesinfY[i][1]+1) and h.GetPosition()[1] in range(self.__activesinfX[i][0],self.__activesinfX[i][1]+1):
-                #             if self.__activekeep[index] == []:
-                #                 self.__activekeep[index].append(actives_stop)
-                #                 temp = h.GetPosition()
-                #             else:
-                #                 if self.__activekeep[index][0] == 0:
-                #                     self.__activekeep[index] = []
-                #                     temp = h.Step(parent,self.__grid, max_humans)
-                #                 else:
-                #                     self.__activekeep[index][0] -= 1
-                #                     temp = h.GetPosition()
-                
-                # else: temp = h.Step(parent,self.__grid, max_humans)            
+                else: 
+                    if self.__grid[int(h.GetPosition()[0])][int(h.GetPosition()[1]-1.5)].GetType() == 6:# or self.__grid[int(h.GetPosition()[0])][int(h.GetPosition()[1]-1)].GetType() == 6:
+                        print(self.__activekeep[index])
+                        if self.__activekeep[index] == []:
+                            self.__activekeep[index].append(actives_stop)
+                            temp = h.GetPosition()
+                            print(temp)
+                        else:
+                            if self.__activekeep[index][0] == 0:
+                                self.__activekeep[index] = []
+                                temp = h.Step(parent,self.__grid, max_humans)
+                                print(temp)
+                            else:
+                                self.__activekeep[index][0] -= 1
+                                temp = h.GetPosition()
+                                print(temp)
+                    else: temp = h.Step(parent,self.__grid, max_humans)
+                         
                             
                 # if h.GetPosition()[0] in self.__cashdesksinfY:
                 #     for i in range(len(self.__cashdesksinfY)):
-                #         if h.GetPosition()[0] == self.__cashdesksinfY[i] and h.GetPosition()[1] in range(self.__cashdesksinfX[i][0],self.__cashdesksinfX[i][1]+1) and bool(self.__stepstostay[index]) != True:
+                #         if h.GetPosition()[0] == self.__cashdesksinfY[i] and h.GetPosition()[1] in np.range(self.__cashdesksinfX[i][0],self.__cashdesksinfX[i][1]+1) and bool(self.__stepstostay[index]) != True:
                 #             temp = h.Step(parent,self.__grid, max_queue)
-                # print(temp)
+                
+                
                 # # for i in range(len(self.__activesinfY)):
                 # #     if h.GetPosition()[0] in range(self.__activesinfY[i][0],self.__activesinfY[i][1]+1) and h.GetPosition()[1] in range(self.__activesinfX[i][0],self.__activesinfX[i][1]+1) and bool(self.__stepstostay[index]) != True:
                 # #             temp = h.GetPosition()
@@ -380,7 +408,7 @@ class Object():
             self.VisualConcentration(scale,screen)
             self.VisualBackground(scale,screen)
             #liczba klatek na sekundę - opóźnienie/przyspieszenie wizualizacji
-            demendedFps = 50
+            demendedFps = 5
             clock.tick(demendedFps)
         pg.quit()
         return(number_step,stanI)         
