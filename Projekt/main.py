@@ -8,33 +8,31 @@ import random
 import numpy as np
 import matplotlib.pyplot as plt
 
-space = 'gym.txt'
-paths = 'gym_path.txt'
-steps = 500
-prob_in = float(10)
-mask = float(1)
-max_humans = 8
-status_I = float(10)
-virus = float(1)
-virus_death = float(10)
-virus_trans = float(20)
-prob_I = float(0.1)
-max_prob_I = float(95)
-factor_mask = float(5)
-factor_I=0.1
+space = argv[1] #nazwa pliku z pomieszczeniem
+paths = argv[2] #nazwa pliku ze ścieżkami
+steps = int(argv[3]) #liczba kroków
+prob_in = int(argv[4]) #prawdopodobieństwo wejścia nowego człowieka
+mask = float(argv[5]) #jaki % osób ma maseczkę
+max_humans = int(argv[6]) #ile maksymalnie osób może znajdować się na polu
+status_I = float(argv[7]) #jaki % osób ma być zarażonych na wejściu
+virus = float(argv[8]) #ile wirusa zostawia osoba zarażona
+virus_death = float(argv[9]) #jaki % wirusa umiera w jednym kroku
+virus_trans = float(argv[10]) #jaki % wirusa jest przekazywany do sąsiadów
+prob_I = float(argv[11]) #jaki jest przelicznik na zarażenie w zależności od stężenia wirusa
+max_prob_I = float(argv[12]) #jakie jest maksymalne prawdopodobieństwo zarażenia
+factor_mask = float(argv[13]) #ile razy mniejsze jest prawdopodobieństwo zarażenia w maseczce
 
-o = Object()
-#o.ReadObject('sklep_zespolowe.txt')
-o.ReadObject(space)
+o = Object() #tworzenie Obiektu
+o.ReadObject(space) #wczytanie pliku z pomieszczeniam przez Obiekt
 
-g = Graph()
-#g.ReadGraph('sklep_graf.txt')
-g.ReadGraph(paths)
+g = Graph() #tworzenie Grafu
+g.ReadGraph(paths) #wczytanie pliku ze ścieżkami przez Graf
 
-x,y = o.Motion(g, steps,prob_in,max_humans,mask,virus,virus_death, virus_trans, status_I, factor_mask,factor_I,max_prob_I)
+#wywołanie ruchu ludzi z wczytanymi parametrami, zwracana jest lista kroków (x) oraz lista zarażeń w danym kroku (y)
+x,y = o.Motion(g, steps,prob_in,max_humans,mask,virus,virus_death, virus_trans, status_I, factor_mask,prob_I, max_prob_I)
+
+#testowe rysowanie wykresu ze zwróconymi danymi
 plt.plot(x,y)
 plt.xlabel('kroki')
 plt.ylabel('zarażenia')
 plt.show()
-o.Visual()
-o.ConcentrationVirus()
