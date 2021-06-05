@@ -23,11 +23,11 @@ import time
 import os.path
 start_time = time.time() 
 
-n_loop=10
+n_loop=100
 
-space = 'sklep_zespolowe.txt'
-paths = 'sklep_graf.txt'
-steps=10
+space = 'gym.txt'
+paths = 'gym_path.txt'
+steps=100
 prob_in = float(5)
 max_humans=float(1)
 mask = float(0)
@@ -55,11 +55,9 @@ for par in parametry:
     for zmienna in parametry[par]:
         typ=space[0]
         o = Object()
-        # o.ReadObject('sklep_zespolowe.txt')
         o.ReadObject(space)
 
         g = Graph()
-        # g.ReadGraph('sklep_graf.txt')
         g.ReadGraph(paths)
 
         if space == 'sklep_zespolowe.txt' and keep:
@@ -79,6 +77,11 @@ for par in parametry:
                 plik.writelines(['typ=',Name[0],'\nsteps=',Name[1],'\nprob_in=',Name[2],'\nmax_humans=',Name[3],'\nmask=',Name[4],'\nvirus=',Name[5],'\nvirus_death=',Name[6],'\nvirus_trans=',Name[7],'\nstatus_I=',Name[8],'\nfactor_mask=',Name[9],'\nfactor_I=',Name[10],'\nmax_prob_I=',Name[11]])
                 plik.write('\n')
             if n_loop==1:
+                o = Object()
+                o.ReadObject(space)
+                g = Graph()
+                g.ReadGraph(paths)
+                
                 number_step, stanI, mc, iI, we, wy = o.Motion(g, steps, zmienna, max_humans, mask, virus, virus_death, virus_trans,status_I, factor_mask, prob_I, max_prob_I, keep)
                 WYNIKI=[we,iI,stanI[-1],wy,mc]
                 WYNIKI=",".join(map(str,WYNIKI))
@@ -92,6 +95,10 @@ for par in parametry:
                     stanI[-1]... ilosc osob zarażonych na wyjsciu
                     wy... ilosc osob na wyjsciu
                     mc... ilosc osob w maskach'''
+                    o = Object()
+                    o.ReadObject(space)
+                    g = Graph()
+                    g.ReadGraph(paths)                    
                     number_step, stanI, mc, iI, we, wy = o.Motion(g, steps, zmienna, max_humans, mask, virus, virus_death, virus_trans,status_I, factor_mask, prob_I, max_prob_I, keep)
                     WYNIKI=[we,iI,stanI[-1],wy,mc]
                     WYNIKI=",".join(map(str,WYNIKI))
@@ -115,6 +122,10 @@ for par in parametry:
                 plik.writelines(['typ=',Name[0],'\nsteps=',Name[1],'\nprob_in=',Name[2],'\nmax_humans=',Name[3],'\nmask=',Name[4],'\nvirus=',Name[5],'\nvirus_death=',Name[6],'\nvirus_trans=',Name[7],'\nstatus_I=',Name[8],'\nfactor_mask=',Name[9],'\nfactor_I=',Name[10],'\nmax_prob_I=',Name[11]])
                 plik.write('\n')
             if n_loop==1:
+                o = Object()
+                o.ReadObject(space)
+                g = Graph()
+                g.ReadGraph(paths)  
                 number_step, stanI, mc, iI, we, wy = o.Motion(g, steps, prob_in, max_humans, zmienna, virus, virus_death, virus_trans,status_I, factor_mask, prob_I, max_prob_I, keep)
                 WYNIKI=[we,iI,stanI[-1],wy,mc]
                 WYNIKI=",".join(map(str,WYNIKI))
@@ -128,6 +139,10 @@ for par in parametry:
                     stanI[-1]... ilosc osob zarażonych na wyjsciu
                     wy... ilosc osob na wyjsciu
                     mc... ilosc osob w maskach'''
+                    o = Object()
+                    o.ReadObject(space)
+                    g = Graph()
+                    g.ReadGraph(paths)  
                     number_step, stanI, mc, iI, we, wy = o.Motion(g, steps, prob_in, max_humans, zmienna, virus, virus_death, virus_trans,status_I, factor_mask, prob_I, max_prob_I, keep)
                     WYNIKI=[we,iI,stanI[-1],wy,mc]
                     WYNIKI=",".join(map(str,WYNIKI))
@@ -151,6 +166,10 @@ for par in parametry:
                 plik.writelines(['typ=',Name[0],'\nsteps=',Name[1],'\nprob_in=',Name[2],'\nmax_humans=',Name[3],'\nmask=',Name[4],'\nvirus=',Name[5],'\nvirus_death=',Name[6],'\nvirus_trans=',Name[7],'\nstatus_I=',Name[8],'\nfactor_mask=',Name[9],'\nfactor_I=',Name[10],'\nmax_prob_I=',Name[11]])
                 plik.write('\n')
             if n_loop==1:
+                o = Object()
+                o.ReadObject(space)
+                g = Graph()
+                g.ReadGraph(paths)  
                 number_step, stanI, mc, iI, we, wy = o.Motion(g, steps, prob_in, max_humans, mask, virus, zmienna, virus_trans,status_I, factor_mask, prob_I, max_prob_I, keep)
                 WYNIKI=[we,iI,stanI[-1],wy,mc]
                 WYNIKI=",".join(map(str,WYNIKI))
@@ -164,6 +183,10 @@ for par in parametry:
                     stanI[-1]... ilosc osob zarażonych na wyjsciu
                     wy... ilosc osob na wyjsciu
                     mc... ilosc osob w maskach'''
+                    o = Object()
+                    o.ReadObject(space)
+                    g = Graph()
+                    g.ReadGraph(paths) 
                     number_step, stanI, mc, iI, we, wy = o.Motion(g, steps, prob_in, max_humans, mask, virus, zmienna, virus_trans,status_I, factor_mask, prob_I, max_prob_I, keep)
                     WYNIKI=[we,iI,stanI[-1],wy,mc]
                     WYNIKI=",".join(map(str,WYNIKI))
@@ -187,6 +210,10 @@ for par in parametry:
                 plik.writelines(['typ=',Name[0],'\nsteps=',Name[1],'\nprob_in=',Name[2],'\nmax_humans=',Name[3],'\nmask=',Name[4],'\nvirus=',Name[5],'\nvirus_death=',Name[6],'\nvirus_trans=',Name[7],'\nstatus_I=',Name[8],'\nfactor_mask=',Name[9],'\nfactor_I=',Name[10],'\nmax_prob_I=',Name[11]])
                 plik.write('\n')
             if n_loop==1:
+                o = Object()
+                o.ReadObject(space)
+                g = Graph()
+                g.ReadGraph(paths) 
                 number_step, stanI, mc, iI, we, wy = o.Motion(g, steps, prob_in, max_humans, mask, virus, virus_death, zmienna,status_I, factor_mask, prob_I, max_prob_I, keep)
                 WYNIKI=[we,iI,stanI[-1],wy,mc]
                 WYNIKI=",".join(map(str,WYNIKI))
@@ -200,6 +227,10 @@ for par in parametry:
                     stanI[-1]... ilosc osob zarażonych na wyjsciu
                     wy... ilosc osob na wyjsciu
                     mc... ilosc osob w maskach'''
+                    o = Object()
+                    o.ReadObject(space)
+                    g = Graph()
+                    g.ReadGraph(paths) 
                     number_step, stanI, mc, iI, we, wy = o.Motion(g, steps, prob_in, max_humans, mask, virus, virus_death, zmienna,status_I, factor_mask, prob_I, max_prob_I, keep)
                     WYNIKI=[we,iI,stanI[-1],wy,mc]
                     WYNIKI=",".join(map(str,WYNIKI))
@@ -223,6 +254,10 @@ for par in parametry:
                 plik.writelines(['typ=',Name[0],'\nsteps=',Name[1],'\nprob_in=',Name[2],'\nmax_humans=',Name[3],'\nmask=',Name[4],'\nvirus=',Name[5],'\nvirus_death=',Name[6],'\nvirus_trans=',Name[7],'\nstatus_I=',Name[8],'\nfactor_mask=',Name[9],'\nfactor_I=',Name[10],'\nmax_prob_I=',Name[11]])
                 plik.write('\n')
             if n_loop==1:
+                o = Object()
+                o.ReadObject(space)
+                g = Graph()
+                g.ReadGraph(paths) 
                 number_step, stanI, mc, iI, we, wy = o.Motion(g, steps, prob_in, max_humans, mask, virus, virus_death, virus_trans,zmienna, factor_mask, prob_I, max_prob_I, keep)
                 WYNIKI=[we,iI,stanI[-1],wy,mc]
                 WYNIKI=",".join(map(str,WYNIKI))
@@ -236,6 +271,10 @@ for par in parametry:
                     stanI[-1]... ilosc osob zarażonych na wyjsciu
                     wy... ilosc osob na wyjsciu
                     mc... ilosc osob w maskach'''
+                    o = Object()
+                    o.ReadObject(space)
+                    g = Graph()
+                    g.ReadGraph(paths) 
                     number_step, stanI, mc, iI, we, wy = o.Motion(g, steps, prob_in, max_humans, mask, virus, virus_death, virus_trans,zmienna, factor_mask, prob_I, max_prob_I, keep)
                     WYNIKI=[we,iI,stanI[-1],wy,mc]
                     WYNIKI=",".join(map(str,WYNIKI))
@@ -259,6 +298,10 @@ for par in parametry:
                 plik.writelines(['typ=',Name[0],'\nsteps=',Name[1],'\nprob_in=',Name[2],'\nmax_humans=',Name[3],'\nmask=',Name[4],'\nvirus=',Name[5],'\nvirus_death=',Name[6],'\nvirus_trans=',Name[7],'\nstatus_I=',Name[8],'\nfactor_mask=',Name[9],'\nfactor_I=',Name[10],'\nmax_prob_I=',Name[11]])
                 plik.write('\n')
             if n_loop==1:
+                o = Object()
+                o.ReadObject(space)
+                g = Graph()
+                g.ReadGraph(paths) 
                 number_step, stanI, mc, iI, we, wy = o.Motion(g, steps, prob_in, max_humans, mask, virus, virus_death, virus_trans,status_I, zmienna, prob_I, max_prob_I, keep)
                 WYNIKI=[we,iI,stanI[-1],wy,mc]
                 WYNIKI=",".join(map(str,WYNIKI))
@@ -272,6 +315,10 @@ for par in parametry:
                     stanI[-1]... ilosc osob zarażonych na wyjsciu
                     wy... ilosc osob na wyjsciu
                     mc... ilosc osob w maskach'''
+                    o = Object()
+                    o.ReadObject(space)
+                    g = Graph()
+                    g.ReadGraph(paths) 
                     number_step, stanI, mc, iI, we, wy = o.Motion(g, steps, prob_in, max_humans, mask, virus, virus_death, virus_trans,status_I, zmienna, prob_I, max_prob_I, keep)
                     WYNIKI=[we,iI,stanI[-1],wy,mc]
                     WYNIKI=",".join(map(str,WYNIKI))
@@ -295,6 +342,10 @@ for par in parametry:
                 plik.writelines(['typ=',Name[0],'\nsteps=',Name[1],'\nprob_in=',Name[2],'\nmax_humans=',Name[3],'\nmask=',Name[4],'\nvirus=',Name[5],'\nvirus_death=',Name[6],'\nvirus_trans=',Name[7],'\nstatus_I=',Name[8],'\nfactor_mask=',Name[9],'\nfactor_I=',Name[10],'\nmax_prob_I=',Name[11]])
                 plik.write('\n')
             if n_loop==1:
+                o = Object()
+                o.ReadObject(space)
+                g = Graph()
+                g.ReadGraph(paths) 
                 number_step, stanI, mc, iI, we, wy = o.Motion(g, steps, prob_in, max_humans, mask, virus, virus_death, virus_trans,status_I, factor_mask, zmienna, max_prob_I, keep)
                 WYNIKI=[we,iI,stanI[-1],wy,mc]
                 WYNIKI=",".join(map(str,WYNIKI))
@@ -308,6 +359,10 @@ for par in parametry:
                     stanI[-1]... ilosc osob zarażonych na wyjsciu
                     wy... ilosc osob na wyjsciu
                     mc... ilosc osob w maskach'''
+                    o = Object()
+                    o.ReadObject(space)
+                    g = Graph()
+                    g.ReadGraph(paths) 
                     number_step, stanI, mc, iI, we, wy = o.Motion(g, steps, prob_in, max_humans, mask, virus, virus_death, virus_trans,status_I, factor_mask, zmienna, max_prob_I, keep)
                     WYNIKI=[we,iI,stanI[-1],wy,mc]
                     WYNIKI=",".join(map(str,WYNIKI))
