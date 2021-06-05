@@ -1,6 +1,6 @@
 class Point():
     def __init__(self, type_, virus, human):
-        self.__type = type_ #typ - object/door/excluded/cashdesks/inwalls jako 0/1/2/3/4
+        self.__type = type_ #typ - door/excluded/active/wall/indoor jako 0/1/2/3/4
         self.__virus = virus #ilość wirusa w danym punkcie
         self.__humans = human #liczba osób w danym punkcie
 
@@ -31,4 +31,3 @@ class Point():
     #zwracanie typu
     def GetType(self):
         return self.__type
-    

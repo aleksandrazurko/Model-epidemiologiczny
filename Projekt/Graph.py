@@ -25,8 +25,8 @@ class Graph():
                     line_temp[1] = float(line_temp[1])
                 except:
                     print("Coordinates should be numeric")
-                temp_v.append(line_temp[0] - 0.5)
-                temp_v.append(line_temp[1] - 0.5)
+                temp_v.append(line_temp[0])
+                temp_v.append(line_temp[1])
             else:
                 line = line.split(' ')
                 for i in range(int((len(line)))):
@@ -37,7 +37,7 @@ class Graph():
                             line_temp[1] = float(line_temp[1])
                         except:
                             print("Coordinates should be numeric")
-                        temp_pa.append([line_temp[0]- 0.5,line_temp[1] - 0.5])
+                        temp_pa.append([line_temp[0],line_temp[1]])
                     else: #pobieranie prawdopodobień stwa
                         try:
                             line[i] = int(line[i])
@@ -58,7 +58,7 @@ class Graph():
     def End(self):
         return(self.__vertices[-1].GetPath()[0])
 
-    #zwracanie wylosowanej ścieżki
+    #zwracanie wylosowanej ścież
     def GetPath(self,vertex):
         for i in range(len(self.__vertices)):
             if self.__vertices[i].GetVertex() == vertex:
@@ -74,5 +74,3 @@ class Graph():
                 suma += p/100
                 ind += 1
         return(self.__vertices[i].GetPath()[ind])
-   
-        
