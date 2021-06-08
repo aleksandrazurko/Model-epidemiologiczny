@@ -29,7 +29,7 @@ main.py space paths steps prob_in mask max_humans status_I virus virus_death vir
 * factor_mask - float, ile razy zmniejsza się prawdopodobieństwo zarażenia w maseczce
 >PLIK SPACE: w osobnych liniach podaje się: nazwę identyfikacyjną, a po spacji jej współrzędne (x i y rozdzielone przecinkiem) również rozdzielone spacją,
 >możliwe nazwy do użycia to: object (współrzędne wierzchołków obiektu), door (współrzędne drzwi zewnętrzych), size (rozmiar macierzy symulacji - współrzędne object powinny mieścić się w size), 
->active (współrzędne pola na którym może stanąć człowiek), cashdesks (współrzędne kasy w sklepie), excluded (współrzędne miejsc na któych nie może stanąć człowiek),
+>active (współrzędne pola na którym może stanąć człowiek), cashdesk (współrzędne kasy lub recepcji, poprzedzone parametrem 'above'/ 'below', w zależności od tego, z której strony podchodzą ludzie- będzie tam występować kolejka), excluded (współrzędne miejsc na któych nie może stanąć człowiek),
 >inwalls (współrzędne ścian znajdujących się w object), indoors (współrzędne drzwi znajdujących się w object)
 >
 >PLIK PATHS: każdy przejście jest zapisywane w trzech liniach: w pierwszej - współrzędne wierzchołka; w drugiej - współrzędne wierzchołków na które możemy przejść z podanego wyżej,
