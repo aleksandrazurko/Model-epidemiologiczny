@@ -8,7 +8,7 @@
 * STATUS PROJEKTU
 ## WPROWADZENIE
 >Na podstawie podanych parametrów program przeprowadza symulację przemieszczania się ludzi w zamkniętym pomieszczeniu oraz ich zarażania. Czym większe stężenie
->wirusa w miejscu pobytu człowieka tym większa szansa na jego zarażenie. Projekt zakłada dwa stany człowieka: S (zdrowy) oraz I (zarażony).
+>wirusa w miejscu pobytu człowieka tym większa szansa na jego zarażenie. Projekt zakłada trzy stany człowieka: S (zdrowy), I (zarażony) oraz SI (zarażony w pomieszczeniu).
 ## UŻYTE TECHNOLOGIE
 - Python
 ## URUCHOMIENIE
